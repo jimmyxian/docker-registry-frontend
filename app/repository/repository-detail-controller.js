@@ -8,8 +8,8 @@
  * Controller of the docker-registry-frontend
  */
 angular.module('repository-detail-controller', ['registry-services', 'app-mode-services'])
-  .controller('RepositoryDetailController', ['$scope', '$route', '$routeParams', '$location', '$modal', 'Repository', 'AppMode',
-  function($scope, $route, $routeParams, $location, $modal, Repository, AppMode){
+  .controller('RepositoryDetailController', ['$scope','$http', '$route', '$routeParams', '$location', '$modal', 'Repository', 'AppMode',
+  function($scope, $http,$route, $routeParams, $location, $modal, Repository, AppMode){
 
     $scope.$route = $route;
     $scope.$location = $location;
@@ -22,7 +22,15 @@ angular.module('repository-detail-controller', ['registry-services', 'app-mode-s
 
     $scope.appMode = AppMode.query();
     $scope.maxTagsPage = undefined;
-
+    //$http.get('http://10.229.43.217:8053/repoinfo').then(function(data){
+    var url = 'http://registry.51gocloud.com:9820/v2/repositories/' + $scope.repositoryUser+'/' + $scope.repositoryName;
+    //var url = 'http://10.229.43.217:8053/repoinfo';
+    $http.get(url).then(function(data){
+        var obj = data.data;
+        $scope.description = obj.description;
+        $scope.fullDescription = obj.full_description;
+        $scope.command = "docker pull " + obj.name;
+    });
     // Method used to disable next & previous links
     $scope.getNextHref = function (){
       if($scope.maxTagsPage > $scope.tagsCurrentPage){

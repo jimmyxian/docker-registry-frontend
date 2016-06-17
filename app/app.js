@@ -36,13 +36,17 @@ angular
     'app-mode-services',
     'smart-table',
     'angular.filter',
-    'ui.checkbox'
+    'ui.checkbox',
+    'hc.marked'
   ])
-  .config(['$routeProvider', '$resourceProvider', 'cfpLoadingBarProvider', '$locationProvider',
-      function($routeProvider, $resourceProvider, cfpLoadingBarProvider, $locationProvider){
+  .config(['$routeProvider', '$resourceProvider', 'cfpLoadingBarProvider', '$locationProvider','$httpProvider',
+      function($routeProvider, $resourceProvider, cfpLoadingBarProvider, $locationProvider,$httpProvider){
+    
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-     $locationProvider.html5Mode(true);
-
+    $locationProvider.html5Mode(true);
+ //   markedProvider.setOptions({gfm:true});
     // Don't show the spinner when making XHR requests.
     // Also, show the bar only if an XHR request takes longer than 50ms.
     cfpLoadingBarProvider.includeSpinner = false;

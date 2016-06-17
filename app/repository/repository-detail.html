@@ -1,3 +1,10 @@
+<script type="text/javascript">
+//    $("#fouthpage").html("<b>Hello world!</b>");
+//  $.get("http://www.w3school.com.cn/example/jquery/demo_test.asp",function(data,status){
+//    alert(data);
+    //$("#fourthpage").html("<b>Hello world!</b>");
+//  });
+</script>
 <ol class="breadcrumb">
     <li><a href="home">Home</a></li>
     <li><a href="repositories/">Repositories</a></li>
@@ -21,40 +28,67 @@
     -->
   </div>
 </h1>
-
-<tag-list></tag-list>
-<nav>
-  <ul class="pager">
-    <li class="previous" ng-class="{disabled: tagsCurrentPage <= 1}">
-      <a href="{{getFirstHref()}}"  >
-        <span aria-hidden="true">&larr;</span>
-        First Page
-      </a>
-    </li>
-    <li>
-      <div class="btn-group" role="group">
-        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="glyphicon glyphicon-book" aria-hidden="true"> </span> / page:
-          <span ng-show="tagsPerPage">{{tagsPerPage}}</span>
-          <span ng-show="!tagsPerPage">all</span>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="repository/{{repository}}">Show all</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="repository/{{repository}}/10/1">10</a></li>
-          <li><a href="repository/{{repository}}/20/1">20</a></li>
-          <li><a href="repository/{{repository}}/40/1">40</a></li>
-          <li><a href="repository/{{repository}}/60/1">60</a></li>
-          <li><a href="repository/{{repository}}/80/1">80</a></li>
-          <li><a href="repository/{{repository}}/100/1">100</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="next" ng-class="{disabled: maxTagsPage <= tagsCurrentPage || !tagsPerPage}">
-      <a  href="{{getNextHref()}}">
-        Next <span aria-hidden="true">&rarr;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+<ul class="nav nav-tabs">
+  <li><a href="#tags" data-toggle="tab">Tags</a></li>
+  <li><a href="#repoinfo" data-toggle="tab">Repo info</a></li>
+<!--  <li><a href="#dockerfile" data-toggle="tab">Dockerfile</a></li>-->
+</ul>
+<div class="tab-content">
+  <div id="tags" class="tab-pane active">
+    <tag-list></tag-list>
+    <nav>
+      <ul class="pager">
+        <li class="previous" ng-class="{disabled: tagsCurrentPage <= 1}">
+          <a href="{{getFirstHref()}}"  >
+            <span aria-hidden="true">&larr;</span>
+            First Page
+          </a>
+        </li>
+        <li>
+          <div class="btn-group" role="group">
+            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-book" aria-hidden="true"> </span> / page:
+              <span ng-show="tagsPerPage">{{tagsPerPage}}</span>
+              <span ng-show="!tagsPerPage">all</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="repository/{{repository}}">Show all</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="repository/{{repository}}/10/1">10</a></li>
+              <li><a href="repository/{{repository}}/20/1">20</a></li>
+              <li><a href="repository/{{repository}}/40/1">40</a></li>
+              <li><a href="repository/{{repository}}/60/1">60</a></li>
+              <li><a href="repository/{{repository}}/80/1">80</a></li>
+              <li><a href="repository/{{repository}}/100/1">100</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="next" ng-class="{disabled: maxTagsPage <= tagsCurrentPage || !tagsPerPage}">
+          <a  href="{{getNextHref()}}">
+            Next <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>  
+  </div>
+  <div id="repoinfo" class="tab-pane"><br /><br />                                                                                                                     
+    <div class="panel panel-default">                                                                                                                                   
+      <div class="panel-heading">Docker Pull Command</div>                                                                                                              
+      <div class="panel-body">{{command}}</div>                                                                                                        
+    </div>                                                                                                                                                              
+                                                                                                                                                                        
+    <div class="panel panel-default">                                                                                                                                   
+      <div class="panel-heading">Short Description</div>                                                                                                                
+      <div class="panel-body">{{description}}</div>                                                                                                    
+    </div>                                                                                                                                                              
+                                                                                                                                                                        
+    <div class="panel panel-default">                                                                                                                                   
+      <div class="panel-heading">Full Description</div>                                                                                                                 
+      <div class="panel-body"><div marked="fullDescription"></div></div>                                                                                                
+    </div>                                    
+  </div>
+<!--  <div id="dockerfile" class="tab-pane">
+    {{dockerfile}}
+  </div>-->
+</div>

@@ -35,6 +35,8 @@ RUN apt-get -y install \
       nodejs-legacy \
       npm \
       --no-install-recommends
+RUN npm install angular-marked
+RUN npm install express
 RUN git config --global url."https://".insteadOf git://
 # Avoid this: "Problem with the SSL CA cert (path? access rights?)"
 RUN git config --global http.sslVerify false

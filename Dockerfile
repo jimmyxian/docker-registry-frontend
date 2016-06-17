@@ -90,6 +90,7 @@ RUN apt-get -y update && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN npm install angular-marked
 ############################################################
 # Add and enable the apache site and disable all other sites
 ############################################################
