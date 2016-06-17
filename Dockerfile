@@ -81,6 +81,7 @@ RUN apt-get -y update && \
     git config --global url."https://".insteadOf git:// && \
     cd $SOURCE_DIR && \
     npm install && \
+    npm install angular-marked && \
     node_modules/bower/bin/bower install --allow-root && \
     node_modules/grunt-cli/bin/grunt build --allow-root && \
     cp -rf $SOURCE_DIR/dist/* $WWW_DIR && \
@@ -89,8 +90,7 @@ RUN apt-get -y update && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
-RUN apt-get -y install npm
-RUN npm install angular-marked
+
 ############################################################
 # Add and enable the apache site and disable all other sites
 ############################################################
